@@ -1,7 +1,11 @@
 require 'set'
 
 class GraphNode
+
+  # @return [Array<GraphNode>]
   attr_accessor :neighbors
+
+  # @return [Object]
   attr_reader :value
 
   def initialize(value)
@@ -19,13 +23,17 @@ class GraphNode
 
 end
 
+# @param [GraphNode] starting_node
+# @param [Object] target_value
+# @return [GraphNode, nil]
 def bfs(starting_node, target_value)
   visited = Set[starting_node]
   frontier = [starting_node]
   until frontier.empty?
+
+    # @type [GraphNode]
     current_node = frontier.shift
     return current_node if current_node.value == target_value
-
     current_node.neighbors.each do |node|
       frontier << node unless visited.include?(node)
       visited << node
