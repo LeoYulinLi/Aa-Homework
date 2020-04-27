@@ -34,6 +34,7 @@ def bfs(starting_node, target_value)
     # @type [GraphNode]
     current_node = frontier.shift
     return current_node if current_node.value == target_value
+
     current_node.neighbors.each do |node|
       frontier << node unless visited.include?(node)
       visited << node
